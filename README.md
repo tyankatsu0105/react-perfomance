@@ -1,9 +1,14 @@
-# GraphQL
+# react perfomance
 
-- https://course.graphqlmastery.com/dashboard
-- https://booth.pm/ja/items/1576562
+React のパフォーマンスを測る
 
-# React
+```bash
+npm run start client
 
-- https://qiita.com/ttiger55/items/50d88e9dbf3039d7ab66
-- https://dev.to/puku0x/angular-react-2h4j
+npm run start mock-server
+```
+
+# 参考
+
+- https://ja.reactjs.org/docs/react-api.html#reactmemo
+- https://ja.reactjs.org/docs/optimizing-performance.html
