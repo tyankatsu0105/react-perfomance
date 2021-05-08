@@ -1,14 +1,6 @@
-# react perfomance
-
-React のパフォーマンスを測る
-
 ```bash
-npm run start client
+npm install --prefix packages/client --no-package-lock -E <package-name>
+npm install
 
-npm run start mock-server
+npm run --prefix packages/client serve
 ```
-
-# 参考
-
-- https://ja.reactjs.org/docs/react-api.html#reactmemo
-- https://ja.reactjs.org/docs/optimizing-performance.html

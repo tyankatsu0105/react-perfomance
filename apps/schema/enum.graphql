@@ -1,7 +1,0 @@
-"血液型"
-enum Blood {
-  A
-  B
-  O
-  AB
-}

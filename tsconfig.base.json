@@ -16,10 +16,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "~client/*": ["apps/client/src/*"],
-      "~mock-server/*": ["apps/mock-server/src/*"]
+      "~client/*": ["packages/client/src/*"]
     },
     "allowSyntheticDefaultImports": true
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules"]
 }
