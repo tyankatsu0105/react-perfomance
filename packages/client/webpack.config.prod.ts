@@ -6,8 +6,6 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const PACKAGE_ROOT = path.resolve(__dirname);
 
-delete process.env.TS_NODE_PROJECT;
-
 const config: Webpack.Configuration & WebpackDevServer.Configuration = {
   mode: 'production',
   entry: path.resolve(PACKAGE_ROOT, 'src/main.tsx'),

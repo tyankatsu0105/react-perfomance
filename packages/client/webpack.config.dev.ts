@@ -6,13 +6,18 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const PACKAGE_ROOT = path.resolve(__dirname);
 
-delete process.env.TS_NODE_PROJECT;
-
-const config: Webpack.Configuration & WebpackDevServer.Configuration = {
+const config: Webpack.Configuration & {
+  devServer: WebpackDevServer.Configuration;
+} = {
   mode: 'development',
+  target: 'web',
   entry: path.resolve(PACKAGE_ROOT, 'src/main.tsx'),
   output: {
     path: path.resolve(PACKAGE_ROOT, 'dist'),
+  },
+  devServer: {
+    contentBase: './src',
+    hot: true,
   },
   module: {
     rules: [
@@ -37,7 +42,7 @@ const config: Webpack.Configuration & WebpackDevServer.Configuration = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: PACKAGE_ROOT + '/src/index.html',
+      template: path.resolve(PACKAGE_ROOT, 'src/index.html'),
       filename: 'index.html',
     }),
   ],

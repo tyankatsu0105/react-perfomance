@@ -14,7 +14,7 @@
   "license": "MIT",
   "author": "tyankatsu <frips.ryilsufupe+dev@gmail.com> (https://tyankatsu.netlify.com/)",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "codegen": "graphql-codegen -c packages/graphql/codegen.yml"
   },
   "workspaces": [
     "packages/*"
@@ -33,6 +33,7 @@
     "@types/node": "15.0.2",
     "@types/webpack": "5.28.0",
     "@types/webpack-dev-server": "3.11.4",
+    "@types/webpack-env": "1.16.0",
     "@typescript-eslint/eslint-plugin": "4.22.1",
     "@typescript-eslint/parser": "4.22.1",
     "eslint": "7.26.0",
@@ -55,6 +56,8 @@
     "webpack-dev-server": "3.11.2"
   },
   "dependencies": {
+    "date-fns": "2.21.3",
+    "graphql": "15.5.0",
     "tslib": "1.14.1"
   }
 }
