@@ -25,6 +25,4 @@ export const status = {
   VALID: 'VALID',
 } as const;
 
-export type Status<Key = keyof typeof status> = Key extends keyof typeof status
-  ? typeof status[Key]
-  : never;
+export type Status = typeof status[keyof typeof status];

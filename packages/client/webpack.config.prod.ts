@@ -1,42 +1,44 @@
-import * as path from "path";
-import * as Webpack from "webpack";
-import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
-import * as WebpackDevServer from "webpack-dev-server";
-import HtmlWebpackPlugin from "html-webpack-plugin";
+import * as path from 'path';
+import * as Webpack from 'webpack';
+import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin';
+import * as WebpackDevServer from 'webpack-dev-server';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-const root = path.resolve(__dirname);
+const PACKAGE_ROOT = path.resolve(__dirname);
 
 delete process.env.TS_NODE_PROJECT;
+
 const config: Webpack.Configuration & WebpackDevServer.Configuration = {
-  mode: "production",
-  entry: path.resolve(__dirname, "src/main.tsx"),
+  mode: 'production',
+  entry: path.resolve(PACKAGE_ROOT, 'src/main.tsx'),
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(PACKAGE_ROOT, 'dist'),
   },
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+        ],
       },
       {
-        test: /\.tsx?$/,
-        use: "ts-loader",
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json"],
-    plugins: [
-      new TsconfigPathsPlugin({
-        configFile: path.resolve(root, "./tsconfig-for-webpack-config.json"),
-      }),
-    ],
+    extensions: ['.ts', '.tsx', '.js', '.json'],
+    plugins: [new TsconfigPathsPlugin()],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: root + "/src/index.html",
-      filename: "index.html",
+      template: PACKAGE_ROOT + '/src/index.html',
+      filename: 'index.html',
     }),
   ],
 };
