@@ -16,6 +16,7 @@ export const adapter = ReduxToolkit.createEntityAdapter<Entity.User>({
 });
 
 export const initialState: Types.State = adapter.getInitialState({
+  pageInfo: {},
   status: Status.status.PRISTINE,
   totalCount: 0,
 });
@@ -34,7 +35,9 @@ const slice = ReduxToolkit.createSlice({
       })
       .addCase(Operations.fetchUsers.fulfilled, (state, action) => {
         state.status = Status.status.SUCCESS;
-        if (action.payload) adapter.addMany(state, action.payload);
+        if (action.payload.users) adapter.addMany(state, action.payload.users);
+        state.pageInfo = action.payload.pageInfo;
+        state.totalCount = action.payload.totalCount;
       })
       .addCase(Operations.fetchUsers.rejected, (state, action) => {
         state.status = Status.status.INVALID;
@@ -43,7 +46,9 @@ const slice = ReduxToolkit.createSlice({
   },
   initialState: initialState as Types.State,
   name,
-  reducers: {},
+  reducers: {
+    toInitialState: () => initialState,
+  },
 });
 
 export const { actions, reducer } = slice;

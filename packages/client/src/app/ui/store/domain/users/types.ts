@@ -10,6 +10,7 @@ import * as Status from '~client/app/ui/store/status';
 export type State = {
   entities: UtilityTypes.Entities<Entity.User>['entities'];
   ids: UtilityTypes.Entities<Entity.User>['ids'];
+  pageInfo: Connection.PageInfo;
   status: Status.Status;
   totalCount: Connection.TotalCount;
 };
@@ -21,6 +22,11 @@ export type State = {
 export type Payload = {
   action: {};
   operation: {
-    fetchUsers: Entity.User[] | null;
+    fetchMoreUsers: void;
+    fetchUsers: {
+      pageInfo: Connection.PageInfo;
+      totalCount: Connection.TotalCount;
+      users: Entity.User[] | null;
+    };
   };
 };

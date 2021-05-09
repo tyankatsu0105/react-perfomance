@@ -22,9 +22,13 @@ type Props = {
 // ------------------------------------
 
 export const Component = (props: Props) => {
-  const { users } = usePage();
+  const { fetchMoreUsers, users } = usePage();
 
   return (
-    <Presentational.Component routeMatch={props.routeMatch} users={users} />
+    <Presentational.Component
+      fetchMoreUsers={fetchMoreUsers}
+      routeMatch={props.routeMatch}
+      users={users}
+    />
   );
 };

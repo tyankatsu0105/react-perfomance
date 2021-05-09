@@ -10,6 +10,7 @@ import * as SharedTypes from '~client/app/ui/shared/types';
 // ------------------------------------
 
 type Props = {
+  fetchMoreUsers: () => void;
   routeMatch: ReactRouter.match<
     SharedTypes.Routes.GetParams<typeof RoutesEntity.URI.users>
   >;
@@ -24,6 +25,9 @@ export const Component = (props: Props) => (
   <>
     <Design.Layouts.Header.Component />
     <p>{JSON.stringify(props.routeMatch, null, 2)}</p>
+    <button onClick={props.fetchMoreUsers} type="button">
+      fetch more
+    </button>
     <Design.Recipies.UserList.Component users={props.users} />
   </>
 );

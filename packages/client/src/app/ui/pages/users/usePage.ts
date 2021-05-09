@@ -12,8 +12,18 @@ export const usePage = () => {
   const users = ReactRedux.useSelector(StoreUsers.allSelector);
 
   React.useEffect(() => {
-    dispatch(StoreUsers.fetchUsers());
+    dispatch(StoreUsers.fetchUsers({}));
   }, [dispatch]);
 
-  return { users };
+  React.useEffect(() => {
+    return () => {
+      dispatch(StoreUsers.actions.toInitialState());
+    };
+  }, []);
+
+  const fetchMoreUsers = React.useCallback(() => {
+    dispatch(StoreUsers.fetchMoreUsers());
+  }, [dispatch]);
+
+  return { fetchMoreUsers, users };
 };

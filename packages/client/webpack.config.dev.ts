@@ -1,29 +1,26 @@
-import * as path from 'path';
-import * as Webpack from 'webpack';
-import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin';
-import * as WebpackDevServer from 'webpack-dev-server';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import * as path from 'path';
+import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin';
+import * as Webpack from 'webpack';
+import * as WebpackDevServer from 'webpack-dev-server';
 
 const PACKAGE_ROOT = path.resolve(__dirname);
 
 const config: Webpack.Configuration & {
   devServer: WebpackDevServer.Configuration;
 } = {
-  mode: 'development',
-  target: 'web',
-  entry: path.resolve(PACKAGE_ROOT, 'src/main.tsx'),
-  output: {
-    path: path.resolve(PACKAGE_ROOT, 'dist'),
-  },
   devServer: {
     contentBase: './src',
+    historyApiFallback: true,
     hot: true,
   },
+  entry: path.resolve(PACKAGE_ROOT, 'src/main.tsx'),
+  mode: 'development',
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
         exclude: /node_modules/,
+        test: /\.tsx?$/,
         use: [
           {
             loader: 'babel-loader',
@@ -36,16 +33,20 @@ const config: Webpack.Configuration & {
       },
     ],
   },
+  output: {
+    path: path.resolve(PACKAGE_ROOT, 'dist'),
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: path.resolve(PACKAGE_ROOT, 'src/index.html'),
+    }),
+  ],
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
     plugins: [new TsconfigPathsPlugin()],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(PACKAGE_ROOT, 'src/index.html'),
-      filename: 'index.html',
-    }),
-  ],
+  target: 'web',
 };
 
 export default config;
