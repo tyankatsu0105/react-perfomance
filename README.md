@@ -1,3 +1,5 @@
+> `initial` ブランチが特に何もしてないやつです
+
 ```bash
 npm install --prefix packages/client --no-package-lock -E <package-name>
 npm install
