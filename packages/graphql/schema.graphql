@@ -1,5 +1,8 @@
-schema { query: Query
-mutation: Mutation }
+schema {
+  query: Query
+  mutation: Mutation
+}
+
 """血液型"""
 enum Blood {
   A
@@ -7,6 +10,7 @@ enum Blood {
   O
   AB
 }
+
 type Book implements Node {
   id: ID!
   createdAt: DateTime!
@@ -20,16 +24,19 @@ type Book implements Node {
   """発売日"""
   releaseAt: Date!
 }
+
 type BookConnection {
   edges: [BookConnectionEdge!]
   nodes: [Book!]
   pageInfo: PageInfo!
   totalCount: Int!
 }
+
 type BookConnectionEdge implements Edge {
   cursor: String!
   node: Book!
 }
+
 input CreateUserInput {
   """名前"""
   name: String!
@@ -38,38 +45,47 @@ input CreateUserInput {
   """血液型"""
   blood: Blood!
 }
+
 type CreateUserPayload {
   user: User
 }
+
 type CreateUsersPayload {
   users: [User]
 }
+
 """
 YYYY-MM-DD
 ex: 2020-01-01
 """
 scalar Date
+
 """
 ISO 8601準拠 YYYY-MM-DDTHH:mm:ss.sssZ
 ex: 2011-10-05T14:48:00.000Z
 """
 scalar DateTime
+
 input DeleteUserInput {
   userID: ID!
 }
+
 type DeleteUserPayload {
   DeletedUserID: ID!
   user: User
 }
+
 interface Edge {
   cursor: String!
   node: Node!
 }
+
 type Favorites {
   books: [ID!]
   movies: [ID!]
   musics: [ID!]
 }
+
 type Movie implements Node {
   id: ID!
   createdAt: DateTime!
@@ -83,16 +99,19 @@ type Movie implements Node {
   """公開地域"""
   releaseCountry: [String!]
 }
+
 type MovieConnection {
   edges: [MovieConnectionEdge!]
   nodes: [Movie!]
   pageInfo: PageInfo!
   totalCount: Int!
 }
+
 type MovieConnectionEdge implements Edge {
   cursor: String!
   node: Movie!
 }
+
 type Music implements Node {
   id: ID!
   createdAt: DateTime!
@@ -104,16 +123,19 @@ type Music implements Node {
   """公開日"""
   releaseAt: Date!
 }
+
 type MusicConnection {
   edges: [MusicConnectionEdge!]
   nodes: [Music!]
   pageInfo: PageInfo!
   totalCount: Int!
 }
+
 type MusicConnectionEdge implements Edge {
   cursor: String!
   node: Music!
 }
+
 type Mutation {
   createUser(input: CreateUserInput!): CreateUserPayload!
   createUsers(input: [CreateUserInput!]!): CreateUsersPayload!
@@ -121,33 +143,40 @@ type Mutation {
   """実際に使うことはない extendしてMutationを拡張していくために元のMutationが必要なので作っただけ"""
   noop(input: NoopInput): NoopPayload
 }
+
 interface Node {
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime
 }
+
 input NoopInput {
   clientMutationId: String
 }
+
 type NoopPayload {
   clientMutationId: String
 }
+
 type PageInfo {
   startCursor: String
   endCursor: String
   hasNextPage: Boolean
   hasPreviousPage: Boolean
 }
+
 input PaginationInput {
   first: Int
   last: Int
   after: String
   before: String
 }
+
 type Price {
   amount: Float!
   symbol: String!
 }
+
 type Query {
   book(id: ID!): Book
   books(page: PaginationInput!, ids: [ID!]): BookConnection!
@@ -160,6 +189,7 @@ type Query {
   user(id: ID!): User
   users(page: PaginationInput!, ids: [ID!]): UserConnection!
 }
+
 type User implements Node {
   id: ID!
   createdAt: DateTime!
@@ -176,12 +206,14 @@ type User implements Node {
   birthDay: Date
   favorites: Favorites
 }
+
 type UserConnection {
   edges: [UserConnectionEdge!]
   nodes: [User!]
   pageInfo: PageInfo!
   totalCount: Int!
 }
+
 type UserConnectionEdge implements Edge {
   cursor: String!
   node: User!

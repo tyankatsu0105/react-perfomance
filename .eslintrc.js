@@ -1,29 +1,36 @@
 module.exports = {
-  root: true,
-  plugins: [
-    'simple-import-sort',
-    'typescript-sort-keys',
-    'sort-keys-fix',
-    'sort-destructure-keys',
-  ],
   overrides: [
     {
+      extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:react/recommended',
+        'prettier',
+      ],
       files: ['*.ts', '*.tsx', '*.js', '*.jsx'],
+      parser: '@typescript-eslint/parser',
+      plugins: [
+        'simple-import-sort',
+        'typescript-sort-keys',
+        'sort-keys-fix',
+        'sort-destructure-keys',
+        '@typescript-eslint',
+      ],
       rules: {
-        'sort-keys-fix/sort-keys-fix': 'warn',
-        'sort-destructure-keys/sort-destructure-keys': 'warn',
         'react/jsx-sort-props': [
           'warn',
           {
             callbacksLast: false,
-            shorthandFirst: true,
             ignoreCase: true,
             noSortAlphabetically: false,
             reservedFirst: true,
+            shorthandFirst: true,
           },
         ],
-        'simple-import-sort/imports': 'warn',
         'simple-import-sort/exports': 'warn',
+        'simple-import-sort/imports': 'warn',
+        'sort-destructure-keys/sort-destructure-keys': 'warn',
+        'sort-keys-fix/sort-keys-fix': 'warn',
         'typescript-sort-keys/interface': 'warn',
         'typescript-sort-keys/string-enum': 'warn',
       },
@@ -31,14 +38,15 @@ module.exports = {
     {
       files: ['*.graphql'],
       parser: '@graphql-eslint/eslint-plugin',
-      plugins: ['@graphql-eslint'],
       parserOptions: {
         operations: ['./apps/graphql/**/*.graphql'],
         schema: './apps/schema/schema.graphql',
       },
+      plugins: ['@graphql-eslint'],
       rules: {
         // "@graphql-eslint/no-unreachable-types": ["error"]
       },
     },
   ],
+  root: true,
 };
