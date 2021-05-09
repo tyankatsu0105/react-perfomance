@@ -21,7 +21,7 @@ type Props = {
 // Component
 // ------------------------------------
 
-export const Component = (props: Props) => (
+const Users = (props: Props) => (
   <>
     <Design.Layouts.Header.Component />
     <p>{JSON.stringify(props.routeMatch, null, 2)}</p>
@@ -31,3 +31,5 @@ export const Component = (props: Props) => (
     <Design.Recipies.UserList.Component users={props.users} />
   </>
 );
+
+export const Component = React.memo(Users);

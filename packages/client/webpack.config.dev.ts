@@ -14,6 +14,7 @@ const config: Webpack.Configuration & {
     historyApiFallback: true,
     hot: true,
   },
+  devtool: 'source-map',
   entry: path.resolve(PACKAGE_ROOT, 'src/main.tsx'),
   mode: 'development',
   module: {

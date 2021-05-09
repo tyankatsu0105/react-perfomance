@@ -18,7 +18,7 @@ type Props = {
 // Component
 // ------------------------------------
 
-export const Component = (props: Props) => (
+const UserList = (props: Props) => (
   <>
     {props.users.map((user) => (
       <ReactRouterDOM.Link
@@ -32,3 +32,5 @@ export const Component = (props: Props) => (
     ))}
   </>
 );
+
+export const Component = React.memo(UserList);

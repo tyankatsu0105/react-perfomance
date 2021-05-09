@@ -5,9 +5,9 @@ import styled from 'styled-components';
 // Component
 // ------------------------------------
 
-export const Component: React.FC = (props) => (
-  <StyledWrap>{props.children}</StyledWrap>
-);
+const List: React.FC = (props) => <StyledWrap>{props.children}</StyledWrap>;
+
+export const Component = React.memo<typeof List>(List);
 
 // ------------------------------------
 // Styles

@@ -13,7 +13,7 @@ const activeClassName = 'is-active' as const;
 // Component
 // ------------------------------------
 
-export const Component = () => (
+const Header = () => (
   <StyledHeader>
     <nav>
       <StyledNavList>
@@ -38,6 +38,8 @@ export const Component = () => (
     </nav>
   </StyledHeader>
 );
+
+export const Component = React.memo(Header);
 
 // ------------------------------------
 // Styles

@@ -20,7 +20,7 @@ type Props = {
 // Component
 // ------------------------------------
 
-export const Component = (props: Props) => (
+const UserCard = (props: Props) => (
   <StyledWrap>
     <Components.Card.Component
       body={
@@ -59,6 +59,8 @@ export const Component = (props: Props) => (
     />
   </StyledWrap>
 );
+
+export const Component = React.memo(UserCard);
 
 // ------------------------------------
 // Styles

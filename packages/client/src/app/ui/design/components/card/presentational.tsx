@@ -15,13 +15,15 @@ type Props = {
 // Component
 // ------------------------------------
 
-export const Component = (props: Props) => (
+export const Card = (props: Props) => (
   <StyledWrap>
     {props.header && <StyledHeader>{props.header}</StyledHeader>}
     {props.body && <StyledBody>{props.body}</StyledBody>}
     {props.footer && <StyledFooter>{props.footer}</StyledFooter>}
   </StyledWrap>
 );
+
+export const Component = React.memo(Card);
 
 // ------------------------------------
 // Styles

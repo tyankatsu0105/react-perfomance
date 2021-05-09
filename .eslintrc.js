@@ -27,6 +27,7 @@ module.exports = {
             shorthandFirst: true,
           },
         ],
+        'react/prop-types': 'off',
         'simple-import-sort/exports': 'warn',
         'simple-import-sort/imports': 'warn',
         'sort-destructure-keys/sort-destructure-keys': 'warn',
