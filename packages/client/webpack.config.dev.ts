@@ -2,6 +2,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as path from 'path';
 import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin';
 import * as Webpack from 'webpack';
+import * as BundleAnalyzerPlugin from 'webpack-bundle-analyzer';
 import * as WebpackDevServer from 'webpack-dev-server';
 
 const PACKAGE_ROOT = path.resolve(__dirname);
@@ -38,6 +39,7 @@ const config: Webpack.Configuration & {
     path: path.resolve(PACKAGE_ROOT, 'dist'),
   },
   plugins: [
+    new BundleAnalyzerPlugin.BundleAnalyzerPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(PACKAGE_ROOT, 'src/index.html'),
